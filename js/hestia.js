@@ -165,7 +165,7 @@ function verifAdress(user){
         var number=document.getElementById("Number").value;
         var boite=document.getElementById("Bte").value;
         var city=document.getElementById("Ville").value;
-        alert(number);
+        //alert(city);
         if(selectedStreetId!=='-1'){
             $.ajax({
                 type:"GET",
@@ -286,7 +286,7 @@ function CreateNewHouse(idCity,idStreet,number,box){
         },
         success:function(retour){
             if(retour==='1'){
-                alert('Enregistrement effectué');
+                alert('Enregistrement de nouveau bâtiment effectué');
                 hideResult();
             }
             else{

@@ -15,7 +15,7 @@ $box=\filter_input(INPUT_GET, 'box');
 $boxV=($box=='-1')?null:$box;
 //echo $boxV;
 if(isset($city)){
-    $req=$pdoH->prepare('INSERT INTO Hestia_Batiment (id_commune, id_rue, Numero, Boite) VALUES (:city, :street, :number, :box)');
+    $req=$pdo->prepare('INSERT INTO Hestia_Batiment (id_commune, id_rue, Numero, Boite) VALUES (:city, :street, :number, :box)');
     $req->bindValue('city',$city,  PDO::PARAM_INT);
     $req->bindValue('street',$street,  PDO::PARAM_INT);
     $req->bindValue('number',$number,  PDO::PARAM_STR);

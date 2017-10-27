@@ -16,18 +16,20 @@ if(isset($idStreet)){
     foreach($req as $row){
         $idCity=$row['id'];        
     }
-    $query='SELECT id, COUNT(*) as count FROM Hestia_Batiment WHERE id_commune="'.$idCity.'" AND id_rue="'.$idStreet.'" AND Numero="'.$number.'"';
+    $query='SELECT id, COUNT(*) as count FROM Hestia_Batiment WHERE id_commune="'.$city.'" AND id_rue="'.$idStreet.'" AND Numero="'.$number.'"';
     $query.=($box==='') ? '' : ' AND Boite="'.$box.'"';
     $rep=$pdo->query($query);
     while($row=$rep->fetch()){
         $count=$row['count'];
         $idHouse=$row['id'];
     }
+    //echo $idHouse;
     if($count=='0'){ //Habitation non existante en base de données.
-        noExist($idCity,$idStreet,$number,$box,$pdoU);
+        noExist($city,$idStreet,$number,$box,$pdo);
     }
     
     else{
+        //echo 'ici';
         //Vérifier les habitant existants, les présenter sous forme de liste le cas échéant
         $rep=$pdo->query('SELECT COUNT(*) as count FROM Hestia_Pers_Bat WHERE id_Bat="'.$idHouse.'" AND Actif="O" AND id_Rel>"1"');
         while($row=$rep->fetch()){
@@ -45,7 +47,7 @@ if(isset($idStreet)){
     }
 }
 
-function noExist($nIdCity,$nIdStreet,$nNumber,$nBox,$pdoU){
+function noExist($nIdCity,$nIdStreet,$nNumber,$nBox,$pdo){
     $req=$pdo->prepare('SELECT NomRue FROM z_rues WHERE IdRue=:id');
     $req->bindValue('id',$nIdStreet,  PDO::PARAM_INT);
     $req->execute();

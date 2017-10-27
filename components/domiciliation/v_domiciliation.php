@@ -95,11 +95,11 @@ public function getFormAddDateRef($user,$data,$rues,$quartiersByUser){
         $html.='<tr><th>Rue concern&eacute;e</th><td id="divRuesByQ"><input type="text" disabled class="form-control" value="Veuillez choisir un quartier"></td></tr>';
     }
     $html.='<tr><th>Num&eacute;ro d\'habitation</th><td><input type="text" class="form-control" id="numHab" name="numHab" required></td></tr>';
-    $html.='<tr><th>Bo&icirc;te</th><td><input type="text" class="form-control" id="boiteNumHab" name="boiteNumHab"></td></tr>';
+    $html.='<tr><th>Bo&icirc;te</th><td><input type="text" class="form-control" id="boiteNumHab" name="boiteNumHab"></td></tr>';*/
     $html.='<tr><td colspan="2"><button type="submit" class="btn btn-primary btn-block btn-large">Enregistrer</button></td></tr>'
             . '</table>'
-            . '</form></div>';*/
-    
+            . '</form></div>';
+    $html.='<div id="result"></div>';
     $this->appli->content=$html;
 }
 public function menuNewDomicileStep1(){
