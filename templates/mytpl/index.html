@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fr">  
+
+	<head>
+		<meta charset="utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/Hestia_Test/templates/mytpl/images/Logo_Hestia.png" type="image/icon" />
+		<link rel="stylesheet" href="/Hestia_Test/templates/mytpl/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/Hestia_Test/templates/mytpl/css/style.css">
+		<script src="/Hestia_Test/templates/mytpl/js/jquery-3.1.1.min.js"></script>
+		<script src="/Hestia_Test/templates/mytpl/js/bootstrap.min.js"></script>
+                <script src="/Hestia_Test/js/hestia.js"></script>
+		<title>Hestia</title>
+		<script type="text/javascript" src="/Hestia_Test/templates/mytpl/js/prefixfree.min.js"></script>
+	</head>
+<body>
+    <header>
+        <a href="index.php?component=user&action=retourAccueil" style="text-decoration:none;color:black;" title="Retour accueil"><img src="/Hestia/templates/mytpl/images/Logo_Hestia.png" alt="Logo Hestia"/> Hestia </a>
+    </header>
+        <div id="result"></div>
+        <div id="menu">
+           <?php echo $this->menu; ?>
+        </div>
+        <div id="main">
+            <?php echo $this->content; ?>
+        </div>
+    
+    <footer>
+        
+    </footer>
+
+</body>
+</html>

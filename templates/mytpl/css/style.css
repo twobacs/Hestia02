@@ -1,0 +1,189 @@
+body{
+    margin:0.8em;
+    color:black;
+    border:1px #dbdbdb solid;
+    border-radius: 15px;
+}
+
+header{
+    color:black;
+    border: solid #dbdbdb 0.1em;
+    padding: 0.8em;
+    padding-left: 1%;
+    border-radius: 15px;
+    background-color: #dbdbdb;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+#result{
+    display:none;
+    visibility: hidden;
+    border: 1px #dbdbdb double;
+    border-radius: 15px;
+    margin: auto;
+    width: 75%;
+    height : 80%;
+    margin-top: 1%;
+    padding: 1%;
+    text-align: center;
+}
+
+#menu, #main{
+    display: inline-block;
+    vertical-align: top;
+    text-align: justify;
+    padding-left: 1%;
+    /*padding-top: 1%;*/
+    /*padding-bottom: 1%;*/
+}
+
+#menu
+{
+    width:23%;
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+   
+    background: #dbdbdb;
+    border-bottom-left-radius: 15px;
+    min-height: 708px;
+}
+
+#main{
+    position: relative;
+    min-width: 74%;
+    border-radius: 5px;
+    border-top-right-radius: 0px;
+    color: black;
+    padding-right: 1%;
+    margin-top: 1%;
+    height: 690px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.bMenu, .bMenu2{    
+    border: 1px #cccccc solid;
+    border-radius: 7px;
+    transition: box-shadow 0.2s;
+    margin-right: 2%;
+    box-shadow: 3px 3px 1px #888888;
+}
+
+.bMenu{
+    width: 60px;
+    margin-bottom: 8px;
+}
+
+.bMenu2{
+    display: inline;
+    width: 40px;
+    text-align: center;
+}
+
+.bMenu:hover{
+    box-shadow: 0px 0px 1px #888888;
+}
+
+.bMenu2:hover{
+    box-shadow: 0px 0px 1px #888888;
+}
+
+.menuC{
+    display: block;
+    padding-bottom: 1%;
+    text-decoration: none;
+    color: black;
+    font-style: normal;
+    transition: color 0.5s, font-style 0.5s;
+}
+
+.menuC:hover{
+    font-style: oblique;
+    color: black;
+}
+
+.boutonC85, .boutonC45{
+    margin-left:auto;
+    margin-right: auto;
+    background-color: #cccccc;
+    border: 1px #999999 solid;
+    text-align: center;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    box-shadow: 2px 2px 1px #888888;
+    border-radius: 7px;
+}
+
+.boutonC85{
+    width:85%;
+    display: block;
+}
+
+.boutonC45{
+    width:45%;
+    display: block;
+}
+
+.labelPY, .labelPN{
+    border: 1px #dbdbdb solid;
+    padding-right: 25px;
+    padding-left: 20px;
+    border-left-width: 10px;    
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border-radius: 7px;
+}
+
+.labelPY{
+    border-left-color: #00cc66;
+}
+
+.labelPN{
+    border-left-color: #ff3300;
+}
+
+.tableResult td{
+    padding-left: 10px;
+    padding-top: 5px;
+}
+
+.tableResult{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media all and (max-width: 1024px){
+    #menu{
+        width:auto;
+        height: auto;
+        text-align: left;
+        font-size: 8px;
+        background: none;
+    }
+    
+    .bMenu{
+        width:40px;
+        margin-bottom: 8px;
+        margin-right: 8px;
+    }
+    
+    header img{
+        height:10px;
+    }
+    
+    header{
+        font-size: 12px;
+    }
+}
+
+@media all and (max-width: 1160px){
+    .aMasquer{
+        display: none;
+    }
+}

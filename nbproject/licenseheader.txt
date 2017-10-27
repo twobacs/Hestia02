@@ -1,0 +1,8 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix}Créé par De Backer Jeremy - Police de Mouscron
+${licensePrefix}Contact : debacker.jeremy@policemouscron.be
+<#if licenseLast??>
+${licenseLast}
+</#if>
