@@ -62,15 +62,15 @@ public function getFormAddDateRef($user,$data,$rues,$quartiersByUser){
             . '<form method="POST" action="?component=domiciliation&action=newDomicile">'
             . '<table class="table table-hover" style="margin-left:75px;max-width:745px;cursor:default;">'
             . '<tr><th style="width:175px;">Date dossier ville</th><td><input type="date" class="form-control" name="date" id="date" autofocus required></td></tr>'
-            . '<tr><th>R&eacute;f&eacute;rence ville</th><td><input type="text" class="form-control" name="number" id="number" required></td></tr>';
+            . '<tr><th>R&eacute;f&eacute;rence ville</th><td><input type="text" class="form-control" name="numVille" id="numVille" required></td></tr>';
     /*  Modification en vue d'introduire l'adresse, quelle que soit l'adresse -- Suppression des filtres "quartier lié" à l'utilisateur
      * Il sera ainsi possible de vérifer en BDD si l'habitation est déjà existante et de l'ajouter si nécessaire.*/
      
     $html.='<tr><th>Code postal</th><td><input type="text" class="form-control" id="CP" name="CP" placeHolder="CP" onkeyup="getVilleByCP();" required></td></tr>';
-    $html.='<tr><th>Ville</th><td><div id="inputVille"><input disabled type="text" class="form-control" name="City" id="Ville" placeHolder="Ville"></div></td></tr>';
-    $html.='<tr><th>Rue</th><td><div id="inputRue"><input type="text" class="form-control" name="Street" id="Street" placeHolder="Rue" onfocusout="resetLocataire();"></div></td></tr>';
+    $html.='<tr><th>Ville</th><td><div id="inputVille"><input disabled type="text" class="form-control" name="Ville" id="Ville" placeHolder="Ville"></div></td></tr>';
+    $html.='<tr><th>Rue</th><td><div id="inputRue"><input type="text" class="form-control" name="Street" id="Street" placeHolder="Rue"></div></td></tr>';
     $html.='<tr><th>Num&eacute;ro</th><td><input type="text" class="form-control" name="Number" id="Number" placeHolder="N°" required></td></tr>';
-    $html.='<tr><th>Bo&icirc;te</th><td><input type="text" class="form-control" name="Bte" id="Bte"  onfocusout="verifAdress(\''.$_SESSION['idUser'].'\');" placeHolder="Bo&icirc;te"></td></tr>';
+    $html.='<tr><th>Bo&icirc;te</th><td><input type="text" class="form-control" name="Bte" id="Bte" placeHolder="Bo&icirc;te"></td></tr>';
     
     /*. '<tr><th>Quartier concern&eacute;</th>';
     //Un seul quartier correspondant pour la personne connectée
@@ -96,7 +96,8 @@ public function getFormAddDateRef($user,$data,$rues,$quartiersByUser){
     }
     $html.='<tr><th>Num&eacute;ro d\'habitation</th><td><input type="text" class="form-control" id="numHab" name="numHab" required></td></tr>';
     $html.='<tr><th>Bo&icirc;te</th><td><input type="text" class="form-control" id="boiteNumHab" name="boiteNumHab"></td></tr>';*/
-    $html.='<tr><td colspan="2"><button type="submit" class="btn btn-primary btn-block btn-large">Enregistrer</button></td></tr>'
+    $html.='<tr><td colspan="2"><p id="bVerifAdresse" class="boutonC45" style="cursor:pointer;" onclick="verifAdress(\''.$_SESSION['idUser'].'\');">V&eacute;rifier adresse</p></td></tr>';
+    $html.='<tr><td colspan="2" id="bRecNewDom" style="display:none;"><button type="submit" class="btn btn-primary btn-block btn-large">Enregistrer</button></td></tr>'
             . '</table>'
             . '</form></div>';
     $html.='<div id="result"></div>';

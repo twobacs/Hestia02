@@ -15,9 +15,54 @@ private function getPOST($p){
 
 public function newDateRef(){
     $date=$this->getPOST('date');
-    $number=$this->getPOST('number');
+    $numVille=$this->getPOST('numVille');
+    $number=$this->getPOST('Number');
+    $CP=$this->getPOST('CP');
+    $ville=$this->getPOST('Ville');
+    $street=$this->getPOST('Street');
+    $boite=$this->getPOST('Bte');
     $user=$_SESSION['idUser'];
-    $quartier=$this->getPOST('idQuartier');
+    
+    $verifPair=$number%2;
+    $side=($verifPair==='0')?'P':'I';
+    
+    //Rechercher quartier relatif à l'habitation
+    $sql='SELECT id_quartier FROM z_quartier_rue WHERE IdRue=:idRue AND cote=:side AND limiteBas<=:number AND limiteHaut>=:number';
+    $req=$this->appli->dbPdo->prepare($sql);
+    $req->bindValue('idRue',$street, PDO::PARAM_INT);
+    $req->bindValue('side',$side, PDO::PARAM_STR);
+    $req->bindValue('number',$number, PDO::PARAM_INT);
+    $req->execute();
+    foreach ($req as $row){
+        $idQuartier=$row['id_quartier'];
+    }
+    
+    //Rechercher ID Batiment
+    $query='SELECT id, COUNT(*) as count FROM Hestia_Batiment WHERE id_commune="'.$ville.'" AND id_rue="'.$street.'" AND Numero="'.$number.'"';
+    $query.=($boite==='') ? '' : ' AND Boite="'.$boite.'"';
+    $rep=$this->appli->dbPdo->query($query);
+    while($row=$rep->fetch()){
+        $count=$row['count'];
+        $idHouse=$row['id'];
+    }
+    $sql='UPDATE Hestia_Batiment SET id_quartier=:idQuartier WHERE id=:idBat';
+    $req=$this->appli->dbPdo->prepare($sql);
+    $req->bindValue('idQuartier',$idQuartier, PDO::PARAM_INT);
+    $req->bindValue('idBat',$idHouse, PDO::PARAM_INT);
+    $req->execute();
+    
+    //Insérer toutes les infos dans la table Hestia_Ref_domiciliation
+    $sql='INSERT INTO Hestia_Ref_Domiciliation (date_ville, id_Admin, date_Hestia, idUser, id_Bat, id_quartier, last_modif) '
+            . 'VALUES(:dateV, :idAdm, NOW(), :idUser, :idBat, :idQuart, NOW())';
+    $req=$this->appli->dbPdo->prepare($sql);
+    $req->bindValue('dateV',$date,PDO::PARAM_STR);
+    $req->bindValue('idAdm',$numVille, PDO::PARAM_STR);
+    $req->bindValue('idUser',$_SESSION['idUser'],PDO::PARAM_INT);
+    $req->bindValue('idBat',$idHouse, PDO::PARAM_INT);
+    $req->bindValue('idQuart',$idQuartier, PDO::PARAM_INT);
+    $req->execute();
+    
+    /*$quartier=$this->getPOST('idQuartier');
     $sql='SELECT COUNT(*) FROM Hestia_Ref_Domiciliation WHERE id_Admin=:refExt';
     $req=$this->appli->dbPdo->prepare($sql);
     $req->bindValue('refExt',$number,PDO::PARAM_STR);
@@ -36,7 +81,7 @@ public function newDateRef(){
         $req->execute();
         $newRow=$this->dbPdo->lastInsertId();
         $_SESSION['idNewDom']=$newRow;
-        return $newRow;}
+        return $newRow;}*/
 }
 
 public function getDomicileEnCours($idUser,$acces){

@@ -287,6 +287,8 @@ function CreateNewHouse(idCity,idStreet,number,box){
         success:function(retour){
             if(retour==='1'){
                 alert('Enregistrement de nouveau bâtiment effectué');
+                slide('bRecNewDom');
+                slide('bVerifAdresse');
                 hideResult();
             }
             else{

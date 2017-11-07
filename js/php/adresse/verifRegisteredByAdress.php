@@ -67,7 +67,7 @@ function showCitizenByIdHouse($idHouse,$user,$pdo){
     foreach ($req as $row){
         $html.=$row['Nom'].' '.$row['Prenom'].' ('.dateFr($row['DateNaissance']).'), depuis le : '.dateFr($row['DateIn']).' <span class="glyphicon glyphicon-remove-circle" aria-hidden="true" style="cursor:pointer;" alt="Supprimer" onclick="delRelationCitizenHouse(\''.$row['idPB'].'\',\''.$user.'\');"></span><br />';
     }
-    $html.='<span onclick="hideResult();" class="glyphicon glyphicon-ok" aria-hidden="true" style="cursor:pointer;" alt="Ok"> Conserver enregistrement(s)</span>';
+    $html.='<span onclick="hideResult(); slide(\'bRecNewDom\'); slide(\'bVerifAdresse\');" class="glyphicon glyphicon-ok" aria-hidden="true" style="cursor:pointer;" alt="Ok"> Conserver enregistrement(s)</span>';
     echo $html;
 }
 ?>

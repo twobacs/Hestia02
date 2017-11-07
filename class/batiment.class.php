@@ -36,5 +36,7 @@ class Batiment{
         $req->bindValue('bat',$idBat,  PDO::PARAM_INT);
         $req->execute();
         return $req;
-    }    
+    }
+    
+    
 }
