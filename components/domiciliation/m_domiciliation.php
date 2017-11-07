@@ -91,9 +91,11 @@ public function getDomicileEnCours($idUser,$acces){
         $idQ=array();
         $i=0;
         foreach ($mesIdQuartier as $row){
-                $sqla='SELECT id, date_ville, id_Admin, date_Hestia, last_modif '
-                        . 'FROM Hestia_Ref_Domiciliation '
-                        . 'WHERE id_quartier=:idQ AND ISNULL(date_cloture)';
+                $sqla='SELECT a.id, a.date_ville, a.id_Admin, a.date_Hestia, a.last_modif, b.numero, b.Boite, c.NomRue '
+                        . 'FROM Hestia_Ref_Domiciliation a '
+                        . 'LEFT JOIN Hestia_Batiment b ON b.id = a.id_Bat '
+                        . 'LEFT JOIN z_rues c ON c.IdRue = b.id_rue '
+                        . 'WHERE a.id_quartier=:idQ AND ISNULL(date_cloture)';
                 $reqa=$this->appli->dbPdo->prepare($sqla);
                 $reqa->bindValue('idQ',$row['id_quartier'],  PDO::PARAM_INT);
                 $reqa->execute();
@@ -105,6 +107,9 @@ public function getDomicileEnCours($idUser,$acces){
                         $data[$i]['idAdmin']=$rowa['id_Admin'];
                         $data[$i]['dateHestia']=$rowa['date_Hestia'];
                         $data[$i]['lastModif']=$rowa['last_modif'];
+                        $data[$i]['rue']=$rowa['NomRue'];
+                        $data[$i]['numero']=$rowa['numero'];
+                        $data[$i]['boite']=$rowa['Boite'];
                         $i++;
                     }
                 }

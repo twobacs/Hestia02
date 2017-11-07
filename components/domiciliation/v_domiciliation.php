@@ -20,13 +20,13 @@ public function getFormAddDateRef($user,$data,$rues,$quartiersByUser){
         $html.='<p class="boutonC85" onclick="slide(\'DosEnCours\');" style="cursor:pointer;">Reprendre une domiciliation en cours ('.$data['enCours'].')</p>';
         $html.='<div id="DosEnCours" style="display:none;">';
         $html.='<table style="margin-left:75px;max-width:745px;cursor:default;" class="table table-hover">';
-        $html.='<tr style="cursor:default;"><th>R&eacute;f&eacute;rence ville</th><th>Date ville</th><th>Date Hestia</th><th>Derni&egrave;re modification</th></tr>';
+        $html.='<tr style="cursor:default;"><th>R&eacute;f&eacute;rence ville</th><th>Date ville</th><th>Rue</th><th>Num&eacute;ro</th></tr>';
         for($i=0;$i<$data['enCours'];$i++){
             $html.='<tr style="cursor:pointer;" onclick="window.location=\'index.php?component=domiciliation&action=goStep1&ref='.$data[$i]['idTable'].'\'">'
                     . '<td>'. $data[$i]['idAdmin'].'</td>'
                     . '<td>'.$this->dateFr($data[$i]['date_ville']).'</td>'
-                    . '<td>'.$this->dateFr($data[$i]['dateHestia']).'</td>'
-                    . '<td>'.$this->dateFr($data[$i]['lastModif']).'</td>'
+                    . '<td>'.$data[$i]['rue'].'</td>'
+                    . '<td>'.$data[$i]['numero'].' '.$data[$i]['boite'].'</td>'
                     . '</tr>';
         }
         $html.='</table></div>';
